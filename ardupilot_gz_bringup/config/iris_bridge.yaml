@@ -77,3 +77,16 @@
   ros_type_name: "sensor_msgs/msg/BatteryState"
   gz_type_name: "gz.msgs.BatteryState"
   direction: GZ_TO_ROS
+
+
+- ros_topic_name: "moving_box/pose"
+  gz_topic_name: "/model/moving_box/pose"
+  ros_type_name: "geometry_msgs/msg/PoseStamped"
+  gz_type_name: "gz.msgs.Pose"
+  direction: GZ_TO_ROS
+
+- ros_topic_name: "iris/pose"
+  gz_topic_name: "/model/iris/pose"
+  ros_type_name: "geometry_msgs/msg/PoseArray"
+  gz_type_name: "gz.msgs.Pose_V"
+  direction: GZ_TO_ROS

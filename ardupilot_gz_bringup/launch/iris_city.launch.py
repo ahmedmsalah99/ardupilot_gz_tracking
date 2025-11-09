@@ -100,7 +100,7 @@ def generate_launch_description():
                 "rviz", default_value="true", description="Open RViz."
             ),
             gz_sim_server,
-           # gz_sim_gui,
+            gz_sim_gui,
             iris,
             rviz,
         ]
