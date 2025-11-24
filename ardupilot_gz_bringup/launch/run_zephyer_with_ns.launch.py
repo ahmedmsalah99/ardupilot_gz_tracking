@@ -28,24 +28,15 @@ def generate_launch_description():
         output='screen',
         remappings=[
             ('image_raw', '/uav1/camera/image'),
-            ('image_mono', '/cam0/image_raw')
+            ('image_mono', '/cam/image_raw')
         ]
     )
 
-    imu_repub_process = ExecuteProcess(
-        cmd=[
-            'python', '/home/stark/stuff/Ardupilot/ardupilot/ardu_gz_ws/imu_repub_with_cov.py',
-            '--ros-args',
-            '-p', 'in_topic:=/uav1/imu',
-            '-p', 'out_topic:=/imu0'
-        ],
-        output='screen'
-    )
+    
 
     return LaunchDescription([
         DeclareLaunchArgument('ns', default_value='uav1', description='namespace to push'),
         image_proc_node,
-	    imu_repub_process,
         PushRosNamespace(ns),
         included
     ])

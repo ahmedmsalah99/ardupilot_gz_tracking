@@ -117,7 +117,7 @@ def generate_launch_description():
 
     # Load SDF file.
     sdf_file = os.path.join(
-        pkg_ardupilot_gazebo, "models", "zephyr", "model.sdf"
+        pkg_ardupilot_gazebo, "models", "zephyr_with_ardupilot", "model.sdf"
     )
     with open(sdf_file, "r") as infp:
         robot_desc = infp.read()

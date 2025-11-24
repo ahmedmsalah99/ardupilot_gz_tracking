@@ -74,10 +74,10 @@
     </include>
 
     <include>
-      <uri>model://zephyr</uri>
-      <name>zephyr</name>
+      <uri>model://zephyr_with_ardupilot</uri>
+      <name>zephyr_with_ardupilot</name>
       <!-- <pose degrees="true">0 0 0.195 0 0 90</pose> -->
-      <pose degrees="true">-30 0 100 0 0 90</pose>
+      <pose degrees="true">-30 0 64 0 0 90</pose>
     </include>
 <!-- <gui fullscreen="false">
     <camera name="user_camera">
