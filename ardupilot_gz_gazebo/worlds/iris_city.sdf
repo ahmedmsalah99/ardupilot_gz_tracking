@@ -9,6 +9,7 @@
     <plugin filename="gz-sim-physics-system"
       name="gz::sim::systems::Physics">
     </plugin>
+    
     <plugin
       filename="gz-sim-sensors-system"
       name="gz::sim::systems::Sensors">
@@ -38,11 +39,57 @@
     <plugin filename="gz-sim-navsat-system"
       name="gz::sim::systems::NavSat">
     </plugin>
+	 <!-- Load the plugin for the wind -->
+	 <wind>
+      <linear_velocity>0 2 0</linear_velocity>
+    </wind>
+    <plugin
+  filename="gz-sim-wind-effects-system"
+  name="gz::sim::systems::WindEffects">
+  <force_approximation_scaling_factor>1</force_approximation_scaling_factor>
 
+  <horizontal>
+    <magnitude>
+      <mean>100</mean>
+      <time_for_rise>5</time_for_rise>
+      <sin>
+        <amplitude_percent>0.6</amplitude_percent>
+        <period>25</period>
+      </sin>
+      <noise type="gaussian">
+        <mean>0</mean>
+        <stddev>0.5</stddev>  
+      </noise>
+    </magnitude>
+
+    <direction>
+      <time_for_rise>30</time_for_rise>
+      <sin>
+        <amplitude>15</amplitude> 
+        <period>20</period>
+      </sin>
+      <noise type="gaussian">
+        <mean>0</mean>
+        <stddev>0.2</stddev>
+      </noise>
+    </direction>
+  </horizontal>
+
+  <vertical>
+    <noise type="gaussian">
+      <mean>0</mean>
+      <stddev>0.3</stddev>        
+    </noise>
+  </vertical>
+</plugin>
+	
+    
+    
     <scene>
       <ambient>1.0 1.0 1.0</ambient>
       <background>0.8 0.8 0.8</background>
       <sky></sky>
+      
     </scene>
 
     <light type="directional" name="sun">
@@ -76,18 +123,15 @@
     <include>
       <uri>model://iris_with_gimbal</uri>
       <name>iris</name>
+      <enable_wind>true</enable_wind>
       <!-- <pose degrees="true">0 0 0.195 0 0 90</pose> -->
-      <pose degrees="true">-30 0 100 0 0 90</pose>
+      <!-- <pose degrees="true">170 68 43 0 0 90</pose> -->
+      <!--<pose degrees="true">0 60 100 0 0 90</pose> -->
+	<pose degrees="true">-30 0 64 0 0 90</pose>
     </include>
-<!-- <gui fullscreen="false">
-    <camera name="user_camera">
-      <pose>-30 0 60 0 0 0</pose>
-      <view_controller>orbit</view_controller>
-      <projection_type>perspective</projection_type>
-    </camera>
-  </gui> -->
+
   <model name="moving_box">
-      <pose>237 78 41 0 0 0</pose>
+      <pose>237 15 41 0 0 0</pose>
       <link name="link">
         <visual name="visual">
         <pose>0 0 0 0 0 -1.5708</pose>
@@ -106,7 +150,7 @@
         <collision name="collision">
       <geometry>
         <box>
-          <size>1 1 1</size>
+          <size>5 5 5</size>
         </box>
       </geometry>
       <surface>
@@ -125,7 +169,7 @@
       <plugin name="gz::sim::systems::LinearMotionPlugin" filename="liblinear_motion_plugin.so">
         <point1>237 78 41</point1>
         <point2>-343 78 41</point2>
-        <speed>100.0</speed>
+        <speed>10.0</speed>
       </plugin>
 
 <plugin name="gz::sim::systems::PosePublisher" filename="libgz-sim-pose-publisher-system.so">
@@ -135,7 +179,7 @@
   <publish_nested_model_pose>true</publish_nested_model_pose>
   <publish_world_pose>true</publish_world_pose>
 
-    <update_rate>30</update_rate>
+    <update_rate>1</update_rate>
   </plugin>
 
 
